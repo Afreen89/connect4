@@ -1,0 +1,74 @@
+"""
+This module has the basic functionality of Counter 4 game.
+"""
+
+import random
+
+def create_board():
+    return [[0] * 7 for _ in range(6)]
+
+def print_board(board):
+    for row in board:
+        print(" ".join(str(line) for line in row))
+    print()
+
+def drop_counter(board, col, player):
+    for row in range(5, -1, -1):
+        if board[row][col] == 0:
+            board[row][col] = player
+            return row
+
+def is_valid_move(board, col):
+    return board[0][col] == 0
+
+
+def check_win(board, row, col, player):
+    # check vertical
+    if row <= 2 and all(board[row+1][col] == player for i in range(4)):
+        return True
+
+    # check horizontal
+    if col <= 3 and all(board[row][col+1] == player for i in range(4)):
+        return True
+
+    return False
+
+def is_stalmete(board):
+    return all(board[0][col] != 0 for col in range(7))
+
+def main():
+    new_board = create_board()
+    turn = 1
+
+    while True:
+        print_board(new_board)
+
+        if turn == 1:
+            player_col = int(input("Player 1 turn - Enter column (0 - 6): "))
+
+        else:
+            player_col = random.randint(0, 6)
+
+        if not (0 <= player_col <= 6):
+            print("Invalid column. Please choose a column between 0 and 6")
+            continue
+
+        if is_valid_move(new_board, player_col):
+            player_row = drop_counter(new_board, player_col, turn)
+
+        if check_win(new_board, player_row, player_col, turn):
+            print_board(new_board)
+            print(f"Player {turn} wins!")
+            break
+
+        if is_stalmete(new_board):
+            print_board(new_board)
+            print("Stalemate!")
+            break
+
+        turn = 3 - turn
+    else:
+        print('Columns are already filled')
+
+if __name__ == "__main__":
+    main()
