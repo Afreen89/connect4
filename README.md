@@ -19,3 +19,9 @@ Challenges:
 3. proper documentation is missing. (docstrings could be used)
 
 These challenges could be overcome with time.
+
+Challenges/Further improvements: 
+
+1. The game is played in a terminal and player 1 doesn't win even if it makes a horizontal line of four. 
+2. Add docstring
+3. testing
