@@ -22,6 +22,6 @@ These challenges could be overcome with time.
 
 Challenges/Further improvements: 
 
-1. The game is played in a terminal and player 1 doesn't win even if it makes a horizontal line of four. 
+1. The game is played in terminal and player 1 doesn't win even if it makes a horizontal line of four. 
 2. Add docstring
 3. testing
